@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html ng-app="customerApp">
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<script type="text/javascript" src="CustomerControllers.js"></script>
+<meta charset="windows-1255">
+<title>customer</title>
+</head>
+<body>
+	<h1>Hello Customer!</h1>
+	<div ng-controller="customerController">
+	
+		<h2>ALL Coupons for you!</h2><br/>
+
+			<table border="1">
+				<tr>
+					<th>title</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>amount</th>
+					<th>type</th>
+					<th>price</th>
+					<th>message</th>
+					<th>image</th>
+				</tr>
+				<tr ng-repeat="x in coupons" >
+					<td>{{x.title}}</td>
+					<td>{{x.startDate}}</td>
+					<td>{{x.endDate}}</td>
+					<td>{{x.amount}}</td>
+					<td>{{x.type}}</td>
+					<td>{{x.price}}</td>
+					<td>{{x.message}}</td>
+					<td>{{x.image}}</td>
+					<td><button ng-click="purchaseCoupon(x)">Buy Now!</button></td>
+			{{purchaseMessage}}
+
+				</tr>
+			</table>
+		
+			<td><button ng-click="getAllMyCoupons()">View your coupons</button></td>
+			
+			<div ng-show="showCoupon">
+				<table border="1">
+				<tr>
+					<th>title</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>amount</th>
+					<th>type</th>
+					<th>price</th>
+					<th>message</th>
+					<th>image</th>
+				</tr>
+				<tr ng-repeat="x in purchasedCoupons" >
+					<td>{{x.title}}</td>
+					<td>{{x.startDate}}</td>
+					<td>{{x.endDate}}</td>
+					<td>{{x.amount}}</td>
+					<td>{{x.type}}</td>
+					<td>{{x.price}}</td>
+					<td>{{x.message}}</td>
+					<td>{{x.image}}</td>
+
+				</tr>
+			</table>
+			
+			</div>
+			
+			<br/>
+			
+			<h2>View my coupons By Type</h2>
+		<br /> Coupon type: <br /> <select ng-model="selectedType">
+			<option value="RESTURANS">RESTURANS</option>
+			<option value="ELECTRICITY">ELECTRICITY</option>
+			<option value="FOOD">FOOD</option>
+			<option value="HEALTH">HEALTH</option>
+			<option value="SPORTS">SPORTS</option>
+			<option value="CAMPING">CAMPING</option>
+			<option value="TRAVELLING">TRAVELLING</option>
+		</select>
+		<button ng-click="getMyCouponsByType()">View By Type</button>
+		<div ng-show="showCouponByType">
+			<table border="1">
+				<tr>
+					<th>title</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>amount</th>
+					<th>type</th>
+					<th>price</th>
+					<th>message</th>
+					<th>image</th>
+				</tr>
+		<tr ng-repeat="x in allCouponsByType">
+			
+					<td>{{x.title}}</td>
+					<td>{{x.startDate}}</td>
+					<td>{{x.endDate}}</td>
+					<td>{{x.amount}}</td>
+					<td>{{x.type}}</td>
+					<td>{{x.price}}</td>
+					<td>{{x.message}}</td>
+					<td>{{x.image}}</td>
+				</tr>
+	
+			</table>
+
+</div>
+<br/>
+
+<h2>View my coupons By Price</h2>
+maximum price: <input type="text" ng-model="price" required="required">
+	<button ng-click="getMyCouponsByPrice()">View By Price</button>
+
+
+<div ng-show="showCouponByPrice">
+			<table border="1">
+				<tr>
+					<th>title</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>amount</th>
+					<th>type</th>
+					<th>price</th>
+					<th>message</th>
+					<th>image</th>
+				</tr>
+		<tr ng-repeat="x in allCouponsByPrice">
+			
+					<td>{{x.title}}</td>
+					<td>{{x.startDate}}</td>
+					<td>{{x.endDate}}</td>
+					<td>{{x.amount}}</td>
+					<td>{{x.type}}</td>
+					<td>{{x.price}}</td>
+					<td>{{x.message}}</td>
+					<td>{{x.image}}</td>
+				</tr>
+	
+			</table>
+
+</div>
+			
+
+	</div>
+</body>
+</html>

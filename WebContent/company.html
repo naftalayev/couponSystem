@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html ng-app="companyApp">
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<script type="text/javascript" src="CompanyControllers.js"></script>
+<meta charset="windows-1255">
+<title>company</title>
+</head>
+<body>
+	<h1>Hello Company!</h1>
+	<h4>what would you like to do?</h4>
+	<div ng-controller="CompanyController">
+
+
+
+		<h2>View Coupon Details</h2>
+		<select ng-model="selectedCoupon" ng-change="searchCoupon()">
+			<option ng-repeat="x in coupons" value="{{x.id}}">{{x.title}}</option>
+		</select>
+		<div ng-show="showCoupon">
+			<table border="1">
+				<tr>
+					<th>title</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>amount</th>
+					<th>type</th>
+					<th>price</th>
+					<th>message</th>
+					<th>image</th>
+				</tr>
+				<tr>
+					<td>{{coupon.title}}</td>
+					<td>{{coupon.startDate}}</td>
+					<td>{{coupon.endDate}}</td>
+					<td>{{coupon.amount}}</td>
+					<td>{{coupon.type}}</td>
+					<td>{{coupon.price}}</td>
+					<td>{{coupon.message}}</td>
+					<td>{{coupon.image}}</td>
+					<td ng-show="showCoupon">
+			<button ng-click="deleteCoupon()">Delete</button>
+			{{coupDelAddMessage}}
+		 </td>
+				</tr>
+			</table>
+			
+		<div ng-show="showCoupon">
+			<h3>Update {{coupon.title}} Detailes</h3>
+			new coupon end date: <input type="date" ng-model="updatedEndDate" /><br />
+			new  coupon price: <input type="text" ng-model="updatedPrice" /><br />
+			<button ng-click="updateCoupon()">Update</button>
+			{{coupUpdateMessage}}
+		</div>
+
+			
+		</div>
+		
+	<br/>
+
+		<h2>Add Coupon</h2>
+		Coupon id: <input type="text" ng-model="coupId" required="required"/><br /> Coupon
+		title: <input type="text" ng-model="coupTitle" required="required"/><br /> Start date:
+		<input type="date" ng-model="startDate" /><br /> End date: <input
+			type="date" ng-model="endDate" /><br /> Amount:<input
+			type="text" ng-model="amount" /><br required="required"/> Coupon type: <br /> <select
+			ng-model="coupType" required="required">
+			<option value="RESTURANS">RESTURANS</option>
+			<option value="ELECTRICITY">ELECTRICITY</option>
+			<option value="FOOD">FOOD</option>
+			<option value="HEALTH">HEALTH</option>
+			<option value="SPORTS">SPORTS</option>
+			<option value="CAMPING">CAMPING</option>
+			<option value="TRAVELLING">TRAVELLING</option>
+		</select><br /> Message: <input type="text" ng-model="message" /><br />
+		Price: <input type="text" ng-model="price" required="required" /><br /> Image: <input
+			type="text" ng-model="image" /><br />
+
+
+		<button ng-click="createCoupon()">Add</button>
+		{{compAddMessage}}
+		<br/>
+	
+		<h2>Find coupon By Type</h2>
+		<br /> Coupon type: <br /> <select ng-model="selectedType">
+			<option value="RESTURANS">RESTURANS</option>
+			<option value="ELECTRICITY">ELECTRICITY</option>
+			<option value="FOOD">FOOD</option>
+			<option value="HEALTH">HEALTH</option>
+			<option value="SPORTS">SPORTS</option>
+			<option value="CAMPING">CAMPING</option>
+			<option value="TRAVELLING">TRAVELLING</option>
+		</select>
+		<button ng-click="searchCouponByType()">search</button>
+		<div ng-show="showCouponByType">
+			<table border="1">
+				<tr>
+					<th>title</th>
+					<th>start date</th>
+					<th>end date</th>
+					<th>amount</th>
+					<th>type</th>
+					<th>price</th>
+					<th>message</th>
+					<th>image</th>
+				</tr>
+		<tr ng-repeat="x in couponsByType">
+			
+					<td>{{x.title}}</td>
+					<td>{{x.startDate}}</td>
+					<td>{{x.endDate}}</td>
+					<td>{{x.amount}}</td>
+					<td>{{x.type}}</td>
+					<td>{{x.price}}</td>
+					<td>{{x.message}}</td>
+					<td>{{x.image}}</td>
+				</tr>
+	
+			</table>
+
+</div>
+
+
+
+	</div>
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html ng-app="adminApp">
+<head>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0/angular.min.js"></script>
+<script type="text/javascript" src="AdminControllers.js"></script>
+<meta charset="windows-1255">
+<title>admin</title>
+</head>
+<body>
+	<h1>Hello Administrator!</h1>
+	<div ng-controller="adminController">
+
+		<h2>View Company Details</h2>
+		<select ng-model="selectedComp" ng-change="searchCompany()">
+			<option ng-repeat="x in companies" value="{{x.id}}">{{x.compName}}</option>
+		</select>
+		<div ng-show="showCompany">
+			<table border="1">
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+				</tr>
+				<tr>
+					<td>{{company.compName}}</td>
+					<td>{{company.email}}</td>
+					<td><button ng-click="deleteCompany()">Delete Company</button>
+			{{compDelAddMessage}}</td>
+
+				</tr>
+			</table>
+		</div>
+
+
+		<div ng-show="showCompany">
+			<h3>Update {{company.compName}} Details</h3>
+			new Company password: <input type="password" ng-model="updatedPassword" /><br />
+			Company email: <input type="email" ng-model="updatedEmail"   /><br />
+			<button ng-click="updateCompany()">Update</button>
+			{{compUpdateMessage}}
+		</div>
+<br/>
+
+		<h2>View Customer Details</h2>
+
+		<select ng-model="selectedCustomer" ng-change="searchCustomer()">
+			<option ng-repeat="x in customers" value="{{x.id}}">{{x.custName}}</option>
+		</select>
+
+		<div ng-show="showCustomer">
+			<table border="1">
+				<tr>
+					<th>id</th>
+					<th>Name</th>
+				</tr>
+				<tr>
+					<td>{{customer.id}}</td>
+					<td>{{customer.custName}}</td>
+					<td><button ng-click="deleteCustomer()">Delete
+							customer</button></td>
+							{{custDelAddMessage}}
+				</tr>
+			</table>
+		</div>
+
+				<div ng-show="showCustomer">
+			<h3>Update {{customer.custName}} Details</h3>
+			new Customer password: <input type="password" ng-model="updatedPassword" required="required"/><br />
+			<button ng-click="updateCustomer()">Update</button>
+			{{custUpdateMessage}}
+		</div>
+<br/>
+
+		<h2>Add Company</h2>
+		Company id: <input type="text" ng-model="compId" required="required"/><br /> Company
+		name: <input type="text" ng-model="compName" required="required"/><br /> Company
+		password: <input type="password" ng-model="companyPassword" required="required"/><br />
+		Company email: <input type="email" ng-model="email" required="required"/><br />
+		<button ng-click="createCompany()">Add</button>
+		{{compAddMessage}} 
+		
+		<br/>
+		
+		<h2>Add Customer</h2>
+		Customer id: <input type="text" ng-model="customerId" required="required" /><br />
+		Customer name: <input type="text" ng-model="customerName" required="required" /><br />
+		Customer password: <input type="password" ng-model="customerPassword" required="required"/><br />
+		<button ng-click="createCustomer()">Add</button>
+		{{custAddMessage}} 
+	</div>
+
+</body>
+</html>
